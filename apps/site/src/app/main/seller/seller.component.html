@@ -1,47 +1,38 @@
-<div class="flex flex-col space-y-3 overflow-auto max-h-screen">
-  <div class="flex flex-col justify-center space-y-4 min-w-[792px] mx-auto p-4 rounded-md bg-white">
-    <div class="flex flex-col space-y-2 text-sm max-w-2xl m-auto">
-      <div class="flex flex-row justify-center space-x-4">
-        <a mat-raised-button href="seller">Sell</a>
-        <a mat-raised-button href="buyer">Buy</a>
-      </div>
-      <div class="flex flex-row space-x-4">
-        <div class="flex flex-col">
-          <mat-form-field appearance="outline">
-            <mat-label>Số Lượng Táo Bán</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Phí Giao Dịch</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Chuối Nhận Được</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-        </div>
-        <div class="flex flex-col">
-          <mat-form-field appearance="outline">
-            <mat-label>Tài Khoản Ngân Hàng Ngân Hàng BIDV</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Tài Khoản Ngân Hàng Sacombank Người Bán</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Tài Khoản Ngân Hàng Sacombank Công Ty</mat-label>
-            <input matInput placeholder="Mô Tả">
-          </mat-form-field>
-        </div>
-      </div>
-      <mat-form-field appearance="outline">
-        <mat-label>Nội Dung</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-      <div class="text-center">
-        <button mat-raised-button color="primary">Xác Nhận</button>
-      </div>
-    </div>
+<div class="flex lg:flex-row flex-col lg:space-x-4">
+  <div class="flex flex-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Số Lượng 1 Bán</mat-label>
+      <input [(ngModel)]="SellData.Soluong" [ngModelOptions]="{standalone: true}"
+       matInput placeholder="Số Lượng 1 Bán">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Phí Giao Dịch</mat-label>
+      <input [(ngModel)]="SellData.Phiban" [ngModelOptions]="{standalone: true}" matInput placeholder="Phí Giao Dịch">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>2 Nhận Được</mat-label>
+      <input [(ngModel)]="SellData.DVNhan" [ngModelOptions]="{standalone: true}" matInput placeholder="2 Nhận Được">
+    </mat-form-field>
   </div>
+  <div class="flex flex-col">
+    <mat-form-field appearance="outline">
+      <mat-label>Tài Khoản 2 Khách Hàng</mat-label>
+      <input [(ngModel)]="SellData.TK2KH" [ngModelOptions]="{standalone: true}" matInput placeholder="Tài Khoản 2 Khách Hàng">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Tài Khoản 1 Người Bán</mat-label>
+      <input [(ngModel)]="SellData.TK1KH" [ngModelOptions]="{standalone: true}" matInput placeholder="Tài Khoản 1 Người Bán">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Tài Khoản 1 Công Ty</mat-label>
+      <input [(ngModel)]="SellData.TK1Cty" [ngModelOptions]="{standalone: true}" matInput placeholder="Tài Khoản 1 Công Ty">
+    </mat-form-field>
+  </div>
+</div>
+<mat-form-field appearance="outline" class="w-full">
+  <mat-label>Nội Dung</mat-label>
+  <textarea [(ngModel)]="SellData.Noidungban" [ngModelOptions]="{standalone: true}" matInput placeholder="Nội Dung"></textarea>
+</mat-form-field>
+<div class="text-center">
+  <a mat-raised-button color="primary" [routerLink]="['/transfer']" [queryParams]="SellData">Xác Nhận</a>
 </div>

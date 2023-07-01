@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seller.component.css']
 })
 export class SellerComponent implements OnInit {
-
+  SellData:any={type:1,Trangthai:0}
   constructor() { }
 
   ngOnInit() {
