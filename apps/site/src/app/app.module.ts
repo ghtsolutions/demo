@@ -8,7 +8,9 @@ import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { PreloadAllModules, RouterModule } from '@angular/router';
-
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database/';
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [
@@ -18,6 +20,8 @@ import { PreloadAllModules, RouterModule } from '@angular/router';
     NotifierModule,
     MaterialModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.FirebaseInit),
+    AngularFireDatabaseModule,
     RouterModule.forRoot([
       {
         path: '', component: AppComponent,

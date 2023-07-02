@@ -1,39 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { LivechatService } from '../../shared/livechat.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-transfer',
-  templateUrl: './transfer.component.html',
-  styleUrls: ['./transfer.component.css']
+  selector: 'app-livechat',
+  templateUrl: './livechat.component.html',
+  styleUrls: ['./livechat.component.css']
 })
-export class TransferComponent implements OnInit {
-  Data:any = {}
-  isShowlivechat:boolean= false
+export class LivechatComponent implements OnInit {
   chatMessages: any[] = [];
+  fileURL:any
   newMessage: string = '';
   selectedImage: File | null = null;
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private _LivechatService: LivechatService
+    private _LivechatService: LivechatService,
+    private sanitizer: DomSanitizer
     ) {}
-  ngOnInit() {   
-    this.route.queryParams.subscribe((params:any) => {     
-      // if(!params.Soluong){
-      //   this.router.navigate(['/']);
-      // }
-      // else
-      // {
-      //   this.Data = params
-      // }
-    });
+
+  ngOnInit(): void {
     this._LivechatService.getChatMessages().subscribe((messages) => {
       this.chatMessages = messages;
     });
   }
+
   sendMessage(): void {
-    console.log(this.newMessage);
+    this.fileURL = null;
     if (this.selectedImage) {
       this._LivechatService.addChatMessageWithImage(this.newMessage, 'User', this.selectedImage,0);
     } else if (this.newMessage.trim() !== '') {
@@ -43,8 +34,15 @@ export class TransferComponent implements OnInit {
     this.newMessage = '';
     this.selectedImage = null;
   }
-
   onFileSelected(event: any): void {
     this.selectedImage = event.target.files[0];
+    if (this.selectedImage) {
+      this.fileURL = URL.createObjectURL(this.selectedImage);
+    }
   }
+  GetImg(data:any)
+  {
+   return this.sanitizer.bypassSecurityTrustUrl(data);
+  }
+
 }

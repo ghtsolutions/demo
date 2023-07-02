@@ -6,7 +6,7 @@ import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
-import { HompageComponent } from './hompage/hompage.component';
+import { LivechatComponent } from './livechat/livechat.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,6 +25,6 @@ import { HompageComponent } from './hompage/hompage.component';
       },
     ])
   ],
-  declarations: [MainComponent, ListComponent, DetailComponent]
+  declarations: [MainComponent, ListComponent, DetailComponent,LivechatComponent]
 })
 export class MainModule { }

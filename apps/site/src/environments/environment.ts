@@ -19,13 +19,13 @@ export const environment = {
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/drive-tazagroup%40tazagroup.iam.gserviceaccount.com"
   },
   FirebaseInit:{
-    apiKey: "AIzaSyAuvMdAWsbDXzA6IoOIiuRhr8w6-VqN4gs",
-    authDomain: "hderma-e806b.firebaseapp.com",
-    projectId: "hderma-e806b",
-    storageBucket: "hderma-e806b.appspot.com",
-    messagingSenderId: "297498165872",
-    appId: "1:297498165872:web:2636d766b29bc99515eab5",
-    measurementId: "G-ZX7TQ6ZTTH"
+    apiKey: "AIzaSyDNZCm026a2mziXxFgMNgGpVE6H4LGsDjo",
+    authDomain: "fir-f4bb6.firebaseapp.com",
+    projectId: "fir-f4bb6",
+    storageBucket: "fir-f4bb6.appspot.com",
+    databaseURL: 'https://fir-f4bb6-default-rtdb.asia-southeast1.firebasedatabase.app/',
+    messagingSenderId: "45443331202",
+    appId: "1:45443331202:web:d6d4a780266a0a5e37b09b"
   },
   DATABASE: {
     type: 'mysql',
