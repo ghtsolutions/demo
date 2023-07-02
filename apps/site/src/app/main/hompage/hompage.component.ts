@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../shared/local-storage.service';
 
 @Component({
   selector: 'app-hompage',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hompage.component.css']
 })
 export class HompageComponent implements OnInit {
-
-  constructor() { }
+  Config:any={}
+  constructor(
+    private _LocalStorageService:LocalStorageService,
+  ) { }
 
   ngOnInit() {
+    this.Config = this._LocalStorageService.getItem('config')?this._LocalStorageService.getItem('config'):{};
   }
 
 }

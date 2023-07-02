@@ -14,6 +14,8 @@ export class TransferComponent implements OnInit {
     ) {}
   ngOnInit() {   
     this.route.queryParams.subscribe((params:any) => {
+      console.log(params);
+      
       if(!params.Soluong){
         this.router.navigate(['/']);
       }
