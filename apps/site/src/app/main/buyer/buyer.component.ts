@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../shared/local-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ExchangeService } from '../../shared/trans.service';
+import { ConfigService } from '../../shared/config.service';
+import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
+import { generateOrderId } from '../../shared/shared.utils';
 
 @Component({
   selector: 'app-buyer',
@@ -8,31 +13,56 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./buyer.component.css']
 })
 export class BuyerComponent implements OnInit {
-  BuyData:any={type:2,Trangthai:0}
-  Config:any={}
-  Trans:any[]=[]
+  BuyData: any = {
+    QuantityIn: 0,
+    QuantityOut: 0,
+    // CompanyAccount1: string,
+    // CompanyAccount2: string,
+    // CustomAccount1: string,
+    // CustomAccount2: string,
+    // Content: string,
+    // Email
+    Fee: 0,
+    TransHash:'',
+    // Note: string,
+    Type: 1,
+    Status: 0
+  }
+  Config: any = {}
   constructor(
-    private _LocalStorageService:LocalStorageService,
-    private _snackBar: MatSnackBar
-  ) {}
-  openSnackBar(message: string,action: string) {
+    private _LocalStorageService: LocalStorageService,
+    private _snackBar: MatSnackBar,
+    private _ExchangeService: ExchangeService,
+    private _ConfigService: ConfigService,
+    private _NotifierService: NotifierService,
+    private router: Router
+  ) { }
+  openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 1000,
     });
   }
   ngOnInit() {
-    this.Config = this._LocalStorageService.getItem('config')
-    this.Trans = this._LocalStorageService.getItem('trans')||[]
-    this.BuyData.Phimua = this.Config.Phimua
+    this._ConfigService.getAll().subscribe(data => {
+      this.Config = data[0]
+      console.log(this.Config);
+      this.BuyData.Fee = this.Config.BuyFee
+      console.log(this.Config.BuyFee);
+      console.log(this.BuyData);
+    }
+    )
   }
-  CreateBuy(data:any)
-  {
-      this.Trans.push(data)
-      this._LocalStorageService.setItem('trans',this.Trans)
+  CreateBuy(data: any) {   
+    data.Code = generateOrderId(11);
+    this._ExchangeService.createExchange(data).subscribe(data => 
+      {
+        this._NotifierService.notify("success", "Create Success")
+          this.router.navigate(['transfer',data.id]);
+        }
+      )
   }
-  OnChangeSL()
-  {   
-    this.BuyData.DVTra = (this.BuyData.Soluong * (1 - (this.BuyData.Phimua / 100))).toFixed();
+  OnChange() {
+    this.BuyData.QuantityOut = (this.BuyData.QuantityIn * this.Config.Buyprice*(1 - (this.BuyData.Fee / 100))).toFixed();
   }
 
 }

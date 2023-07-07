@@ -1,40 +1,33 @@
-  <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav w-1/3" mode="over" position="end">
-      <app-livechat></app-livechat>
-    </mat-drawer>
-  
-    <div class="example-sidenav-content">
-      <section class="h-full gradient-form bg-gray-200 md:h-screen">
-        <div class="container py-12 px-6 h-full m-auto">
-          <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-            <div class="xl:w-6/12 w-full">
-              <div class="block bg-white shadow-lg rounded-lg">
-                <div class="lg:flex lg:flex-wrap g-0">
-                  <div class="lg:w-full px-4 md:px-0">
-                    <div class="md:p-12 md:mx-6">
-                      <div class="flex flex-col space-y-3 overflow-auto max-h-screen">
-                        <div class="flex flex-col justify-center space-y-4 mx-auto p-4 rounded-md bg-white">
-                          <div class="flex flex-col space-y-2 text-sm m-auto">
-                            <div class="flex flex-row">
-                              <a class="m-auto text-center w-48 border p-3 rounded" routerLink="/">Logo</a>
-                              <span class="material-icons text-2xl" (click)="drawer.toggle()">live_help</span>
-                            </div>
-                            <div class="flex flex-row justify-center space-x-4">
-                                <a mat-raised-button [routerLink]="[ '/seller' ]" routerLinkActive="!bg-blue-500 !text-white">Bán</a>
-                                <a mat-raised-button [routerLink]="[ '/buyer' ]" routerLinkActive="!bg-blue-500 !text-white">Mua</a>
-                              </div>
-                            <router-outlet></router-outlet>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<mat-drawer-container class="example-container bg-[#441E5B]" autosize>
+  <mat-drawer #drawer class="example-sidenav w-1/3" mode="over" position="end">
+    <app-livechat></app-livechat>
+  </mat-drawer>
+  <mat-drawer-content class="example-sidenav-content bg-[#291038] h-full w-full">
+    <section class="h-full gradient-form bg-[#291038]">
+      <div class="bg-[#441E5B] text-white mt-5">
+        <div class="max-w-5xl h-20 flex flex-row justify-between items-center m-auto">
+          <div class="w-full"><a class="m-auto text-center text-3xl w-48 p-3" routerLink="/">Logo Here</a></div>
+          <div class="w-full flex flex-row justify-between items-center">
+            <div class="flex flex-row space-x-4 w-full">
+              <div [routerLink]="['/whychooseus']" routerLinkActive="underline underline-offset-8 decoration-white">WHY CHOOSE US</div>
+              <div [routerLink]="['/contact']" routerLinkActive="underline underline-offset-8 decoration-white">CONTACT US</div>
             </div>
+            <div [matMenuTriggerFor]="menu" class="!text-white flex flex-row justify-center items-center space-x-2">
+              <span class="uppercase">{{langselect}} </span>
+              <img [src]="ListImg[langselect]" class="w-5 h-5"/>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let lang of translate.getLangs()" (click)="langselect=lang">
+                <div class="flex flex-row space-x-4 items-center">
+                  <img [src]="ListImg[lang]" class="w-5 h-5"/>
+                  <span>{{ListLang[lang]}}</span>
+                </div>
+              </button>
+            </mat-menu>
           </div>
-          </div>
-      </section>
-    </div>
-  
-  </mat-drawer-container>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

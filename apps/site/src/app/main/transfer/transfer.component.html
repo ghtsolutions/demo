@@ -1,146 +1,51 @@
-<div class="flex flex-col space-y-2">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
-            <ng-container *ngIf="Data.type==1; else elseTemplate">
-                <table class="w-full text-sm text-left">
-                    <tbody>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Giao Dịch
-                            </th>
-                            <td class="px-6 py-4">
-                                <span
-                                    class="{{Data.Trangthai==0?'text-orange-500':'text-green-500'}}">{{Data.Trangthai==0?'Waiting':'Done'}}</span>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Số Lượng Bán
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Soluong| number:'1.0-0'||'0'}}đ
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Phí Giao Dịch
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Phiban| number:'1.0-0'||'0'}}%
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                2 Nhận Được
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.DVNhan| number:'1.0-0'||'0'}} JPY
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Tài Khoản 2 Khách Hàng
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.TK2KH}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Tài Khoản 1 Người Bán
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.TK1KH}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Tài Khoản 1 Công Ty
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.TK1Cty}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Nội Dung
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Noidungban}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </ng-container>
-            <ng-template #elseTemplate>
-                <table class="w-full text-sm text-left">
-                    <tbody>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Giao Dịch
-                            </th>
-                            <td class="px-6 py-4">
-                                <span
-                                    class="{{Data.Trangthai==0?'text-orange-500':'text-green-500'}}">{{Data.Trangthai==0?'Waiting':'Done'}}</span>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Số Lượng Mua
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Soluong| number:'1.0-0'||'0'}}đ
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Phí Giao Dịch
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Phimua| number:'1.0-0'||'0'}}%
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                JPY Tanh Toán
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.DVTra| number:'1.0-0'||'0'}} JPY
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Tài Khoản VND Khách Hàng
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.TK1KH}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Email
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Email}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Tài Khoản JPY Công Ty
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.TK2Cty}}
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-100">
-                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                Nội Dung
-                            </th>
-                            <td class="px-6 py-4">
-                                {{Data.Noidungmua}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </ng-template>
+<div class="max-w-3xl flex flex-col space-y-4 py-12 px-6 h-full m-auto">
+    <div class="flex flex-col justify-between space-y-4 bg-[#441E5B] rounded py-4 px-20">
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-white">
+                <thead class="text-xs text-white">
+                    <tr>
+                        <th colspan="2" scope="row" class="text-center text-2xl px-6 py-3">
+                            <span>Mã Đơn Hàng : </span>
+                            <span>#{{Data.Code}}</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Trạng thái giao dịch</td>
+                        <td>{{Data.Status==0?'Waiting':'Done'}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Số Lượng Mua/Bán</td>
+                        <td>{{Data.QuantityIn| number:'1.0-0'||'0'}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Phí</td>
+                        <td>{{Data.Fee| number:'1.0-0'||'0'}}%</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Tổng Thanh Toán</td>
+                        <td>{{Data.QuantityOut| number:'1.0-0'||'0'}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Tài Khoản VND Khách Hàng</td>
+                        <td>{{Data.CustomAccount1}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Email</td>
+                        <td>{{Data.Email}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Tài Khoản VND Công Ty</td>
+                        <td>{{Data.CompanyAccount2}}</td>
+                    </tr>
+                    <tr class="text-white border-t-2">
+                        <td class="py-4">Nội dung</td>
+                        <td>{{Data.Note}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+    </div>
 </div>

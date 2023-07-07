@@ -7,7 +7,6 @@ import { MaterialModule } from '../../shared/material.module';
 import { UsersComponent } from './users.component';
 import { UsersDetailResolver, UsersResolver } from './users.resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from '@tinymce/tinymce-angular';
 @NgModule({
   declarations: [ListComponent, DetailComponent],
   imports: [
@@ -15,7 +14,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EditorModule,
     RouterModule.forChild([
       {
         path: '',

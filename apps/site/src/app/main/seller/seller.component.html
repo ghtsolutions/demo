@@ -1,50 +1,73 @@
-<div class="flex lg:flex-row flex-col lg:space-x-4">
-  <div class="flex flex-col">
-    <mat-form-field appearance="outline">
-      <mat-label>Số Lượng VND Bán</mat-label>
-      <input type="number" (change)="OnChangeSL()" [(ngModel)]="SellData.Soluong" [ngModelOptions]="{standalone: true}"
-       matInput placeholder="Số Lượng 1 Bán">
-       <mat-hint><span class="text-blue-500">{{(SellData.Soluong| number:'1.0-0')||'0'}}đ</span></mat-hint>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Phí Giao Dịch</mat-label>
-      <input type="number" disabled [(ngModel)]="SellData.Phiban" [ngModelOptions]="{standalone: true}" matInput placeholder="Phí Giao Dịch">
-      <mat-hint><span class="text-blue-500">{{(SellData.Phiban| number:'1.0-0')||'0'}}đ</span></mat-hint>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>JPY Nhận Được</mat-label>
-      <input type="number" disabled [(ngModel)]="SellData.DVNhan" [ngModelOptions]="{standalone: true}" matInput placeholder="JPY Nhận Được">
-      <mat-hint><span class="text-blue-500">{{(SellData.DVNhan| number:'1.0-0')||'0'}}JPY</span></mat-hint>
-    </mat-form-field>
+<div class="max-w-3xl flex flex-col space-y-4 py-12 px-6 h-full m-auto">
+  <div class="flex flex-row space-x-4 justify-center">
+    <div class="p-4 rounded text-white bg-green-500" [routerLink]="['/buyer']">Mua Ngay</div>
+    <div class="p-4 rounded text-white bg-red-500" [routerLink]="['/seller']">Bán Ngay</div>
   </div>
-  <div class="flex flex-col">
-    <mat-form-field appearance="outline">
-      <mat-label>TK JPY Khách Hàng</mat-label>
-      <input [(ngModel)]="SellData.TK2KH" [ngModelOptions]="{standalone: true}" matInput placeholder="TK JPY Khách Hàng">
-      <button matSuffix mat-icon-button [cdkCopyToClipboard]="SellData.TK2KH" (click)="openSnackBar('Coppy '+ SellData.TK2KH, 'Close')">
-        <mat-icon><span class="material-icons">content_copy</span></mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>TK VN Khách Hàng</mat-label>
-      <input [(ngModel)]="SellData.TK1KH" [ngModelOptions]="{standalone: true}" matInput placeholder="TK VN Khách Hàng">
-      <button matSuffix mat-icon-button [cdkCopyToClipboard]="SellData.TK1KH" (click)="openSnackBar('Coppy '+ SellData.TK1KH, 'Close')">
-        <mat-icon><span class="material-icons">content_copy</span></mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>TK VN Công Ty</mat-label>
-      <input [(ngModel)]="SellData.TK1Cty" [ngModelOptions]="{standalone: true}" matInput placeholder="TK VN Công Ty">
-      <button matSuffix mat-icon-button [cdkCopyToClipboard]="SellData.TK1Cty" (click)="openSnackBar('Coppy '+ SellData.TK1Cty, 'Close')">
-        <mat-icon><span class="material-icons">content_copy</span></mat-icon>
-      </button>
-    </mat-form-field>
+  <div class="flex flex-col space-y-4 bg-[#441E5B] rounded pb-2 p-8">
+    <div class="flex flex-row space-x-12 justify-between">
+      <div class="w-full flex flex-col">
+          <label for="first_name" class="block mb-2 text-white">{{'So_luong'|translate}}</label>
+          <input type="text" (change)="OnChange()" [(ngModel)]="SellData.QuantityIn" [ngModelOptions]="{standalone: true}"
+           class="w-full p-3 bg-[#291038] text-white rounded">
+          <span class="text-white font-bold">{{ 'Fee' | translate }} {{SellData.Fee}} usdt</span>
+      </div>
+      <div class="w-full">
+        <div class="mb-2 font-medium text-white flex flex-row space-x-2 justify-between">
+          <span>*Địa chỉ ví USDT: </span>
+          <div [matMenuTriggerFor]="menu" class="!text-white flex flex-row items-center">
+            <span>ETH</span>
+            <span class="material-icons">
+              expand_circle_down
+              </span>
+          </div> 
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>ETH</button>
+              <button mat-menu-item>BSC</button>
+            </mat-menu>
+        </div>       
+        <input [(ngModel)]="SellData.CustomAccount2" [ngModelOptions]="{standalone: true}" type="text" class="w-full p-3 bg-[#291038] text-white rounded">    
+    </div>
+    </div>
+    <div class="flex flex-row space-x-12 justify-between">
+      <div class="w-full">
+          <label class="block mb-2 font-medium text-white">*Email</label>
+          <input [(ngModel)]="SellData.Email" [ngModelOptions]="{standalone: true}" type="text" class="w-full p-3 bg-[#291038] text-white rounded">
+      </div>
+      <div class="w-full">
+        <div class="mb-2 font-medium text-white flex flex-row space-x-2 justify-between">
+          <span>*Địa chỉ ví <strong>PiBank</strong>:</span>
+        </div>       
+        <input [(ngModel)]="SellData.CustomAccount1" [ngModelOptions]="{standalone: true}" type="text" class="w-full p-3 bg-[#291038] text-white rounded">    
+    </div>
+    </div>
+    <div class="flex flex-row justify-between rounded border border-[#eab308] mx-4 px-8 p-4">
+        <div class="text-white italic font-bold">Tổng giá trị nhận được : </div>
+        <div class="text-yellow-500 font-bold text-xl">{{(SellData.QuantityOut| number:'1.0-0')||'0'}} <span class="text-white">usdt</span> </div>
+    </div>
+    <div class="flex flex-col space-y-1">
+      <label for="message" class="block mb-2 text-sm font-medium text-white">*Nội Dung Giao Dịch :</label>
+      <textarea [(ngModel)]="SellData.Note" [ngModelOptions]="{standalone: true}" rows="3" class="bg-[#291038] text-white rounded"></textarea>
+    </div>
+    <div class="flex flex-row justify-center px-4">
+      <button (click)="CreateSell(SellData)" type="button" class="text-white bg-green-500 p-2 rounded">Xác Nhận Giao Dịch</button>
+    </div>
+    <div class="flex flex-col p-2 text-white italic">
+      *Hoàn tất giao dịch trong vòng 15 phút hoặc được hoàn tiền
+    </div>
   </div>
-</div>
-<mat-form-field appearance="outline" class="w-full">
-  <mat-label>Nội Dung</mat-label>
-  <textarea [(ngModel)]="SellData.Noidungban" [ngModelOptions]="{standalone: true}" matInput placeholder="Nội Dung"></textarea>
-</mat-form-field>
-<div class="text-center">
-  <a mat-raised-button color="primary" [routerLink]="['/transfer']" [queryParams]="SellData" (click)="CreateSell(SellData)">Xác Nhận</a>
+  <div class="flex flex-col space-y-3 bg-[#441E5B] rounded p-8">
+    <div class="text-white ml-4">
+        <span>Hướng Dẫn Thanh Toán</span>
+    </div>
+    <div class="text-white">
+        <span>- Quý KH chuyển số tiền 123usdt vào địa chỉ ví Công ty. </span><span class="text-yellow-500">Nội dung chuyển khoản vui lòng nhập Địa chỉ email và STK PiBank của quý khách</span>
+    </div>
+    <div class="text-white">
+        <span>- Địa chỉ ví USDT PiBank của Công Ty: xxxxx xxxáddfsgsdf </span>
+    </div>
+    <div class="text-white flex flex-row space-x-3 items-center">
+        <strong>*TRANSATION ID BANK</strong>
+          <input [(ngModel)]="SellData.TransIdBank" [ngModelOptions]="{standalone: true}" type="text" class="w-1/2 p-3 bg-[#291038] text-white rounded">
+    </div>
+  </div>
 </div>
