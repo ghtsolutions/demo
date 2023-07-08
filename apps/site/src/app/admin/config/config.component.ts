@@ -33,15 +33,35 @@ TransInit:any[]=[
         "Noidungmua": "Mua"
     }
 ]
-ConfigInit:any ={
-  "Sellprice": "21000",
-  "Buyprice": "19000",
-  "SellFee": "10",
-  "BuyFee": "5",
-  "Mintrade": "5000000",
-  "Maxtrade": "20000000",
-  "Totaltrade": "5000000000"
-}
+ConfigInit:any = {
+    "Sellprice": "21000.00",
+    "Buyprice": "8700.00",
+    "SellFee": "10.00",
+    "BuyFee": "20.00",
+    "Mintrade": "5000000.00",
+    "Maxtrade": "100000.00",
+    "Totaltrade": "99999999.99",
+    "Note": "",
+    "Type": 1,
+    "Ordering": 1,
+    "Status": 0,
+  }
+// {
+//   "id": "bec16d16-4f71-4399-b569-85a52e9a618c",
+//   "Sellprice": "21000.00",
+//   "Buyprice": "8700.00",
+//   "SellFee": "10.00",
+//   "BuyFee": "20.00",
+//   "Mintrade": "5000000.00",
+//   "Maxtrade": "100000.00",
+//   "Totaltrade": "99999999.99",
+//   "Note": "",
+//   "Type": 1,
+//   "Ordering": 1,
+//   "Status": 0,
+//   "CreateAt": "2023-07-05T15:05:54.228Z",
+//   "idCreate": null
+// }
   Config:any={}
   editableContent: string = '';
   constructor(

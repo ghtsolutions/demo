@@ -12,14 +12,14 @@
             <div class="flex flex-col space-y-4 text-center bg-[#441E5B] text-white py-3 px-6 rounded">
               <div>{{'Tong_quy_ban'|translate}}</div>
               <div>
-                <span class="text-orange-300 font-bold">{{(Config.Mintrade| number:'1.0-0')||'0'}} </span>
+                <span class="text-orange-300 font-bold">{{(Config.Maxtrade| number:'1.0-0')||'0'}} </span>
                 <span>coin</span>
               </div>
             </div>
           </div>
           <div class="flex flex-col space-y-2 text-center bg-[#441E5B] text-white p-3 rounded">
             <div class="flex flex-row justify-between items-center">
-              <div>{{'icon'|translate}}</div>
+              <div><img [src]="'assets/bitcoin.png'" class="h-10"></div>
               <div>
                 <select id="default"
                   class="bg-[#291038] border border-[#291038] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -41,7 +41,8 @@
                 <span>USD</span>
               </div>
               <div>
-                <button mat-raised-button class="bg-green-500" [routerLink]="['/buyer']">{{'Mua_ngay'|translate}}</button>
+                <img [src]="'assets/muangay1.png'" class="h-10" [routerLink]="['/buyer']">
+                <!-- <button mat-raised-button class="bg-green-500" [routerLink]="['/buyer']">{{'Mua_ngay'|translate}}</button> -->
               </div>
             </div>
             <div class="flex flex-col w-full space-y-2 bg-[#441E5B] text-white p-5 rounded">
@@ -51,7 +52,8 @@
                 <span>USD</span>
               </div>
               <div>
-                <button mat-raised-button class="bg-green-500" [routerLink]="['/seller']">{{'Ban_ngay'|translate}}</button>
+                <img [src]="'assets/banngay1.png'" class="h-10" [routerLink]="['/seller']">
+                <!-- <button mat-raised-button class="bg-green-500" [routerLink]="['/seller']">{{'Ban_ngay'|translate}}</button> -->
               </div>
             </div>
           </div>

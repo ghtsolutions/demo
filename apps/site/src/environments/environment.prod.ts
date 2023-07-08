@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
+  Teleram_bot_token:'6347734187:AAERaq9274ZPDGCNTL0w4RSy0wput3fZb6I',
+  Teleram_group_id:'-930029563',
   APIURL:"https://apifull.tazagroup.vn",
   FirebaseInit:{
     apiKey: "AIzaSyDNZCm026a2mziXxFgMNgGpVE6H4LGsDjo",
