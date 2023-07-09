@@ -4,6 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MainComponent } from '../main.component';
 import { Observable } from 'rxjs';
 import { UsersService } from '../../shared/users.service';
+import { NotifierService } from 'angular-notifier';
+import { TelegramService } from '../../shared/telegram.service';
 
 @Component({
   selector: 'app-livechat',
@@ -20,19 +22,22 @@ export class LivechatComponent implements OnInit {
   isEmail:any;
   ListEmail:any[]=[]
   Role:any='user';
-  CUser:any
+  CUser:any={}
   constructor(
     private _LivechatService: LivechatService,
     private sanitizer: DomSanitizer,
     private _MainComponent: MainComponent,
-    private _UsersService: UsersService
+    private _UsersService: UsersService,
+    private _NotifierService: NotifierService,
+    private _TelegramService: TelegramService,
     ) {}
 
   ngOnInit(): void {
     this._UsersService.getProfile().subscribe(data=>
-      {if(data){
+      {
+        if(data){
         this.Role='admin'
-        this.CreateChat(data.email)
+        this.CUser = data
       }})
     this._LivechatService.isEmail$.subscribe(data => {
       this.isEmail = data;
@@ -75,18 +80,35 @@ export class LivechatComponent implements OnInit {
   }
   CreateChat(email:any)
   {
+   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   if (email=='')
+    {
+      this._NotifierService.notify("error", "Vui lòng nhập Email")
+    }
+    else if (!emailPattern.test(email)) {
+      this._NotifierService.notify("error", "Sai Định Dạng Email")
+    }
+  else
+    {
    const result = this.ListEmail.find(v=>v.data==email)
    console.log(result);
    
-   if(result!==undefined)
+   if(result==undefined)
    {
     this._LivechatService.addEmail(email);
    }
     this._LivechatService.updateisEmail(email);
+    }
   }
   LoadChat(data:any)
   {
     this.FilterchatMessages = this.chatMessages.filter(v=>v.email==data) 
+    this._LivechatService.updateisEmail(data);
+  }
+  NotiTele(data:any)
+  {
+    const result = `Có 1 livechat với email ${data}`
+    this._TelegramService.createChatTelegram(result).subscribe();
   }
 
 }

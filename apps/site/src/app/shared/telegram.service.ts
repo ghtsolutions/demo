@@ -7,7 +7,8 @@ import { environment } from '../../environments/environment';
 })
 export class TelegramService {
   private APIURL = environment.APIURL;
-  private TeleURL = `https://api.telegram.org/bot${environment.Teleram_bot_token}`
+  private TeleURL = `https://api.telegram.org/bot${environment.Teleram_bao_test_trans_bot}`
+  private TeleChatURL = `https://api.telegram.org/bot${environment.Teleram_bot_token}`
   private _telegram: BehaviorSubject<any | any> = new BehaviorSubject(null);
   private _telegrams: BehaviorSubject<any[] | any> = new BehaviorSubject(null);
   constructor(private _httpClient: HttpClient) { }
@@ -27,7 +28,17 @@ export class TelegramService {
   }
   createTelegram(data: any): Observable<any> {
     console.log(data);
-    return this._httpClient.post<any>(`${this.TeleURL}/sendMessage?chat_id=${environment.Teleram_group_id}&text=${data}&parse_mode=html`, data).pipe(
+    return this._httpClient.post<any>(`${this.TeleURL}/sendMessage?chat_id=${environment.Teleram_bao_test_trans_group_id}&text=${data}&parse_mode=html`, data).pipe(
+        map((res: any) => {
+          this._telegrams.next(res);
+          console.log(res);
+          return res;
+        })
+    );
+  }
+  createChatTelegram(data: any): Observable<any> {
+    console.log(data);
+    return this._httpClient.post<any>(`${this.TeleChatURL}/sendMessage?chat_id=${environment.Teleram_group_id}&text=${data}&parse_mode=html`, data).pipe(
         map((res: any) => {
           this._telegrams.next(res);
           console.log(res);
